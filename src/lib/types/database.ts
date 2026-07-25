@@ -7,9 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  __InternalSupabase: {
-    PostgrestVersion: "14.5"
-  }
   public: {
     Tables: {
       agendamentos: {
@@ -331,8 +328,7 @@ export type Database = {
   }
 }
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
-type DefaultSchema = DatabaseWithoutInternals["public"]
+type DefaultSchema = Database["public"]
 
 export type Tables<T extends keyof DefaultSchema["Tables"]> =
   DefaultSchema["Tables"][T]["Row"]
