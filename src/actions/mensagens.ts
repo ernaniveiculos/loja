@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { mensagemSchema } from "@/lib/validations/mensagem";
+import type { TablesInsert } from "@/lib/types/database";
 
 export async function enviarMensagem(veiculoId: string | null, formData: FormData) {
   const parsed = mensagemSchema.safeParse({
@@ -16,10 +17,11 @@ export async function enviarMensagem(veiculoId: string | null, formData: FormDat
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.from("mensagens").insert({
+  const insercao: TablesInsert<"mensagens"> = {
     veiculo_id: veiculoId,
     ...parsed.data,
-  });
+  };
+  const { error } = await supabase.from("mensagens").insert(insercao);
   if (error) return { erro: error.message };
 
   if (veiculoId) revalidatePath("/painel/vendedor/mensagens");

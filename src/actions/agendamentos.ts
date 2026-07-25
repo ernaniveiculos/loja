@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { agendamentoSchema } from "@/lib/validations/agendamento";
+import type { TablesInsert } from "@/lib/types/database";
 
 export async function criarAgendamento(veiculoId: string, formData: FormData) {
   const parsed = agendamentoSchema.safeParse({
@@ -20,11 +21,12 @@ export async function criarAgendamento(veiculoId: string, formData: FormData) {
   } = await supabase.auth.getUser();
   if (!user) return { erro: "Faça login para agendar uma visita" };
 
-  const { error } = await supabase.from("agendamentos").insert({
+  const insercao: TablesInsert<"agendamentos"> = {
     veiculo_id: veiculoId,
     usuario_id: user.id,
     ...parsed.data,
-  });
+  };
+  const { error } = await supabase.from("agendamentos").insert(insercao);
   if (error) return { erro: error.message };
 
   revalidatePath("/painel/vendedor/agendamentos");
