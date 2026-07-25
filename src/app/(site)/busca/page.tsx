@@ -41,7 +41,9 @@ export default async function BuscaPage({
   return (
     <div className="container py-10 grid md:grid-cols-[300px_1fr] gap-8">
       <div>
-        <VehicleFilters />
+        <Suspense fallback={null}>
+          <VehicleFilters />
+        </Suspense>
       </div>
       <Suspense
         key={JSON.stringify(filtros)}
