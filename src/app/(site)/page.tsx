@@ -71,6 +71,20 @@ export default function HomePage() {
       <Suspense fallback={<div className="container py-12"><GradeSkeleton /></div>}>
         <UltimosAnuncios />
       </Suspense>
+
+      <section className="container pb-16">
+        <div className="rounded-xl bg-secondary p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold">Quer vender seu veículo sem dor de cabeça?</h2>
+            <p className="mt-2 text-muted-foreground max-w-xl">
+              Deixe em consignação com a Ernani Veículos: cuidamos do anúncio, da negociação e da documentação.
+            </p>
+          </div>
+          <Button size="lg" asChild className="shrink-0">
+            <Link href="/consignacao">Saiba mais</Link>
+          </Button>
+        </div>
+      </section>
     </div>
   );
 }
