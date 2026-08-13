@@ -6,6 +6,7 @@ import { ShareButton } from "@/components/veiculos/share-button";
 import { FavoriteButton } from "@/components/veiculos/favorite-button";
 import { ContactForm } from "@/components/veiculos/contact-form";
 import { ScheduleForm } from "@/components/veiculos/schedule-form";
+import { FinancingPartners } from "@/components/site/financing-partners";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -86,6 +87,11 @@ export default async function VeiculoDetalhePage({ params }: { params: Promise<{
         <Card>
           <CardHeader><CardTitle>Agendar visita / test-drive</CardTitle></CardHeader>
           <CardContent><ScheduleForm veiculoId={veiculo.id} /></CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <FinancingPartners titulo="Simule seu financiamento com" />
+          </CardContent>
         </Card>
       </div>
     </div>
