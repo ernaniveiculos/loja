@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { LOGO_DATA_URI } from "@/lib/brand-assets";
 
-const RATIO = 1600 / 686;
+const RATIO = 200 / 98;
 
 export function Logo({ className, height = 40, linkToHome = true }: { className?: string; height?: number; linkToHome?: boolean }) {
   const width = Math.round(height * RATIO);
