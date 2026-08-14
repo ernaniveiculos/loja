@@ -25,7 +25,7 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Logo height={36} />
+        <Logo height={52} />
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           {links.map((l) => (
